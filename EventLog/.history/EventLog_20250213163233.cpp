@@ -5,6 +5,11 @@
 CEventLog::CEventLog(std::string szServiceName)
     : serviceName(std::move(szServiceName)), m_hEventSource(nullptr) {}
 
+void CEventLog::SetServiceName(std::string szServiceName) {
+    serviceName = std::move(szServiceName);
+    m_hEventSource = nullptr;
+}
+
 CEventLog::~CEventLog() {
     if (m_hEventSource) {
         ::DeregisterEventSource(m_hEventSource);
