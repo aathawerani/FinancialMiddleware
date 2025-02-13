@@ -41,11 +41,11 @@ void CEventLog::LogEvent(WORD wType, DWORD dwID,
         ::ReportEvent(m_hEventSource,
                       wType,
                       0,
-                      dwID,
+                      eventMessagesCStr.data(),
                       nullptr,
                       static_cast<WORD>(eventMessages.size()),
                       0,
-                      eventMessagesCStr.data(),
+                      eventMessages.data(),
                       nullptr);
     }
 

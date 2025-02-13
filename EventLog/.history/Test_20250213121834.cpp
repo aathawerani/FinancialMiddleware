@@ -10,6 +10,6 @@ int main() {
     eventLog.LogEvent(EVENTLOG_ERROR_TYPE, 3001, std::optional<std::string>("Error: Service failed to start."),
                        std::optional<std::string>("Error Code: 500"), std::optional<std::string>("Restart recommended."));
 
-    std::cout << "Events logged successfully!...." << std::endl;
+    std::cout << "Events logged successfully!" << std::endl;
     return 0;
 }
