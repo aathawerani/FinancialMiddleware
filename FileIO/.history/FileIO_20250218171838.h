@@ -6,9 +6,6 @@
 #include <vector>
 #include <string>
 
-const int MAX_FILE_LENGTH = 1024;
-const int MAX_STRING_LENGTH = 1024;
-
 class CFileIO {
 public:
     static const int FLAG_CREATE_NEW;

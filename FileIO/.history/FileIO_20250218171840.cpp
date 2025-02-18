@@ -6,8 +6,7 @@
 #include <vector>
 #include <string>
 #include <memory>
-#include <stdexcept>
-#include <cstdarg> // Include for va_start and va_end
+#include <stdexcept> // Use standard exception
 
 const int CFileIO::FLAG_CREATE_NEW = std::ios::trunc;
 const int CFileIO::FLAG_CREATE_ALWAYS = std::ios::trunc;
@@ -99,7 +98,7 @@ int CFileIO::ReadDelimitedLine(char **cBuffer, const char *cDelimitedStr, unsign
         if (cPos - cParamString == 0)
         {
             cParamString++;
-            FilePos += 1;
+            FilePos++;
             continue;
         }
         else
@@ -166,7 +165,7 @@ int CFileIO::ReadDelimitedLine(std::vector<std::string> &vecBuffer, const char *
         if (cPos - cParamString == 0)
         {
             cParamString++;
-            FilePos += 1;
+            FilePos++;
             continue;
         }
         else
