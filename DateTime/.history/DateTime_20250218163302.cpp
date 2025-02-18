@@ -134,11 +134,7 @@ bool CDateTime::toString (std::string& buffer)
 		<< std::setw(2) << std::setfill('0') << systemTime.wMinute
 		<< std::setw(2) << std::setfill('0') << systemTime.wSecond;
 	buffer = oss.str();
-	return true;
-}
 
-bool CDateTime::toStringFull(std::string& buffer)
-{
 	std::ostringstream oss;
 	oss << std::setw(4) << std::setfill('0') << systemTime.wYear
 		<< std::setw(2) << std::setfill('0') << systemTime.wMonth
@@ -148,6 +144,11 @@ bool CDateTime::toStringFull(std::string& buffer)
 		<< std::setw(2) << std::setfill('0') << systemTime.wSecond
 		<< std::setw(3) << std::setfill('0') << systemTime.wMilliseconds;
 	buffer = oss.str();
+bool CDateTime::toStringFull(std::string& buffer)
+{
+	buffer = std::format("{:04}{:02}{:02}{:02}{:02}{:02}{:03}",
+		systemTime.wYear, systemTime.wMonth, systemTime.wDay,
+		systemTime.wHour, systemTime.wMinute, systemTime.wSecond, systemTime.wMilliseconds);
 
 	return true;
 }
@@ -162,17 +163,6 @@ bool CDateTime::toFormattedString (std::string& buffer)
 	std::memcpy(buffer.data(), cReceiveTime.data(), 4);		// copy year
 	std::memcpy(buffer.data() + 5, cReceiveTime.data() + 4, 2);	// copy month
 	std::memcpy(buffer.data() + 8, cReceiveTime.data() + 6, 2);	// copy day
-	std::memcpy(buffer.data() + 11, cReceiveTime.data() + 8, 2);	// copy hours
-	std::memcpy(buffer.data() + 14, cReceiveTime.data() + 10, 2);
-	std::memcpy(buffer.data() + 17, cReceiveTime.data() + 12, 2);
-	buffer[19] = '\0';
-	return true;
-}
-
-bool CDateTime::toGMTString (std::string& buffer)
-{
-	SYSTEMTIME universalTime;
-	GetSystemTime(&universalTime);
 	std::ostringstream oss;
 	oss << std::setw(4) << std::setfill('0') << universalTime.wYear
 		<< std::setw(2) << std::setfill('0') << universalTime.wMonth
@@ -181,25 +171,36 @@ bool CDateTime::toGMTString (std::string& buffer)
 		<< std::setw(2) << std::setfill('0') << universalTime.wMinute
 		<< std::setw(2) << std::setfill('0') << universalTime.wSecond;
 	buffer = oss.str();
-	return true;
-}
-
-bool CDateTime::toDateString (std::string& buffer)
-{
 	std::ostringstream oss;
 	oss << std::setw(4) << std::setfill('0') << systemTime.wYear
 		<< std::setw(2) << std::setfill('0') << systemTime.wMonth
 		<< std::setw(2) << std::setfill('0') << systemTime.wDay;
 	buffer = oss.str();
-	return true;
 }
 
-bool CDateTime::toTimeString (std::string& buffer)
-{
 	std::ostringstream oss;
 	oss << std::setw(2) << std::setfill('0') << systemTime.wHour
 		<< std::setw(2) << std::setfill('0') << systemTime.wMinute
 		<< std::setw(2) << std::setfill('0') << systemTime.wSecond;
 	buffer = oss.str();
+	SYSTEMTIME universalTime;
+	GetSystemTime(&universalTime);
+	buffer = std::format("{:04}{:02}{:02}{:02}{:02}{:02}", 
+		universalTime.wYear, universalTime.wMonth, universalTime.wDay,
+		universalTime.wHour, universalTime.wMinute, universalTime.wSecond);
+	return true;
+}
+
+bool CDateTime::toDateString (std::string& buffer)
+{
+	buffer = std::format("{:04}{:02}{:02}", 
+		systemTime.wYear, systemTime.wMonth, systemTime.wDay);
+	return true;
+}
+
+bool CDateTime::toTimeString (std::string& buffer)
+{
+	buffer = std::format("{:02}{:02}{:02}", 
+		systemTime.wHour, systemTime.wMinute, systemTime.wSecond);
 	return true;
 }
