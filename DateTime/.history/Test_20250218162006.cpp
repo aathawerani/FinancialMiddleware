@@ -2,8 +2,6 @@
 #include <iostream>
 #include <string>
 
-#define DT_STRING_LEN 256
-
 int main() {
     // Create CDateTime object with current local time
     CDateTime dateTime;
