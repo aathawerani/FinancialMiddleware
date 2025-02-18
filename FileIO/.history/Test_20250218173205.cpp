@@ -24,9 +24,7 @@ int main() {
 
     // File operations
     try {
-        std::cout << "Attempting to create file: " << fileName << std::endl;
         CFileIO file(fileName, CFileIO::FLAG_CREATE_ALWAYS);
-        std::cout << "File created successfully: " << fileName << std::endl;
 
         // Write to file
         file.WriteParamLine("This is a test line: %d", 1);
