@@ -34,36 +34,26 @@ int CFileOps::WriteParamLine(const char* cFormat, ...)
     va_end(arglist);
 
     snprintf(tempStr, MAX_FILE_LENGTH, "%s\r\n", logCharString);
-    std::cout << "tempStr: " << tempStr;
     return WriteLine(tempStr, strlen(tempStr));
 }
 
 int CFileOps::ReadDelimitedLine(char **cBuffer, const char *cDelimitedStr, unsigned int maxSize)
 {
-    std::cout << "got here 10 " << std::endl;
     std::unique_ptr<char[]> atempStr(new char[maxSize]);
     long iBytesRead;
 
-    std::cout << "got here 11 " << std::endl;
     if (FilePos == FileSeek(0, std::ios::end)) // File Processed
         return 0;
 
     FileSeek(FilePos, std::ios::beg);
     iBytesRead = ReadLine(atempStr.get());
-    std::cout << "atempStr.get() " << atempStr.get() << std::endl;
-    std::cout << "bytes read " << iBytesRead << std::endl;
-    iBytesRead = ReadLine(atempStr.get());
-    std::cout << "atempStr.get() " << atempStr.get() << std::endl;
-    std::cout << "bytes read " << iBytesRead << std::endl;
     if (iBytesRead <= 0)
         return 0;
 
-    std::cout << "got here 12 " << std::endl;
     atempStr[iBytesRead] = 0;
     char *cParamString = atempStr.get();
     char *cPos = nullptr;
 
-    std::cout << "got here 13 " << std::endl;
     while ((cPos = strpbrk(cParamString, "\n\r")))
     {
         if (cPos - cParamString == 0)
@@ -127,10 +117,8 @@ int CFileOps::ReadDelimitedLine(std::vector<std::string> &vecBuffer, const char 
 
     std::cout << "got here 3 " << std::endl;
 
-    FileSeek(FilePos, std::ios::beg);
+    //FileSeek(FilePos, std::ios::beg);
     iBytesRead = ReadLine(aTempStr.get());
-    std::cout << "aTempStr.get() " << aTempStr.get() << std::endl;
-    std::cout << "bytes read " << iBytesRead << std::endl;
     if (iBytesRead <= 0)
         return 0;
 

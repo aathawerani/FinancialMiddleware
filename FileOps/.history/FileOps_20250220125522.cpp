@@ -48,12 +48,10 @@ int CFileOps::ReadDelimitedLine(char **cBuffer, const char *cDelimitedStr, unsig
     if (FilePos == FileSeek(0, std::ios::end)) // File Processed
         return 0;
 
-    FileSeek(FilePos, std::ios::beg);
+    //FileSeek(FilePos, std::ios::beg);
     iBytesRead = ReadLine(atempStr.get());
-    std::cout << "atempStr.get() " << atempStr.get() << std::endl;
     std::cout << "bytes read " << iBytesRead << std::endl;
     iBytesRead = ReadLine(atempStr.get());
-    std::cout << "atempStr.get() " << atempStr.get() << std::endl;
     std::cout << "bytes read " << iBytesRead << std::endl;
     if (iBytesRead <= 0)
         return 0;
@@ -129,7 +127,6 @@ int CFileOps::ReadDelimitedLine(std::vector<std::string> &vecBuffer, const char 
 
     FileSeek(FilePos, std::ios::beg);
     iBytesRead = ReadLine(aTempStr.get());
-    std::cout << "aTempStr.get() " << aTempStr.get() << std::endl;
     std::cout << "bytes read " << iBytesRead << std::endl;
     if (iBytesRead <= 0)
         return 0;

@@ -52,9 +52,6 @@ int CFileOps::ReadDelimitedLine(char **cBuffer, const char *cDelimitedStr, unsig
     iBytesRead = ReadLine(atempStr.get());
     std::cout << "atempStr.get() " << atempStr.get() << std::endl;
     std::cout << "bytes read " << iBytesRead << std::endl;
-    iBytesRead = ReadLine(atempStr.get());
-    std::cout << "atempStr.get() " << atempStr.get() << std::endl;
-    std::cout << "bytes read " << iBytesRead << std::endl;
     if (iBytesRead <= 0)
         return 0;
 
