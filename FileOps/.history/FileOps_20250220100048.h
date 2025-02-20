@@ -7,8 +7,6 @@
 #include <string>
 #include "../FileIO/FileIO.h"
 
-class CFileIO;
-
 class CFileOps : public CFileIO {
 public:
     CFileOps(const char *cFileName, int iFlag);
@@ -24,4 +22,4 @@ public:
 
 };
 
-#endif // FILEOPS_H
+#endif // FILEIO_H
