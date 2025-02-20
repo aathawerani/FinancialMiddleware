@@ -40,7 +40,6 @@ int CFileOps::WriteParamLine(const char* cFormat, ...)
 
 int CFileOps::ReadDelimitedLine(char **cBuffer, const char *cDelimitedStr, unsigned int maxSize)
 {
-    std::cout << "ReadDelimitedLine 2" << std::endl;
     std::unique_ptr<char[]> atempStr(new char[maxSize]);
     long iBytesRead;
 
@@ -116,7 +115,7 @@ int CFileOps::ReadParamLine(char **cBuffer, unsigned int maxSize)
 
 int CFileOps::ReadDelimitedLine(std::vector<std::string> &vecBuffer, const char *cDelimitedStr, unsigned int maxSize)
 {
-    std::cout << "ReadDelimitedLine 1" << std::endl;
+    std::cout << "ReadDelimitedLine" << std::endl;
     std::unique_ptr<char[]> aTempStr(new char[maxSize]);
     long iBytesRead;
 
