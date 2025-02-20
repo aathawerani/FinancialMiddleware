@@ -42,10 +42,9 @@ int main() {
         // Read from file
         char buffer[MAX_STRING_LENGTH];
         file.FileSeek(0, std::ios::beg);
-        int iBytesRead = file.ReadLine(buffer);
+        iBytesRead = file.ReadLine(buffer);
         std::cout << "Read from file: " << buffer << std::endl;
         std::cout << "file position: " << file.getFpos() << std::endl;
-        std::cout << "bytes read " << iBytesRead << std::endl;
 
         // Read full line
         std::string fullLine;

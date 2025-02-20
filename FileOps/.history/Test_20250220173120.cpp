@@ -45,7 +45,6 @@ int main() {
         int iBytesRead = file.ReadLine(buffer);
         std::cout << "Read from file: " << buffer << std::endl;
         std::cout << "file position: " << file.getFpos() << std::endl;
-        std::cout << "bytes read " << iBytesRead << std::endl;
 
         // Read full line
         std::string fullLine;
