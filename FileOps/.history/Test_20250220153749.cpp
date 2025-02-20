@@ -40,16 +40,16 @@ int main() {
         file.flush();
 
         // Read multiple lines from the file
-        char buffer1[MAX_STRING_LENGTH];
+        char buffer[MAX_STRING_LENGTH];
         file.FileSeek(0, std::ios::beg);
-        int bytesRead = file.ReadLine(buffer1);
-        std::cout << "Read from file: " << buffer1 << std::endl;
+        int bytesRead = file.ReadLine(buffer);
+        std::cout << "Read from file: " << buffer << std::endl;
         std::cout << "bytesRead: " << bytesRead << std::endl;
-        bytesRead = file.ReadLine(buffer1);
-        std::cout << "Read from file: " << buffer1 << std::endl;
+        bytesRead = file.ReadLine(buffer);
+        std::cout << "Read from file: " << buffer << std::endl;
         std::cout << "bytesRead: " << bytesRead << std::endl;
-        bytesRead = file.ReadLine(buffer1);
-        std::cout << "Read from file: " << buffer1 << std::endl;
+        bytesRead = file.ReadLine(buffer);
+        std::cout << "Read from file: " << buffer << std::endl;
         std::cout << "bytesRead: " << bytesRead << std::endl;
 
         // Read from file
