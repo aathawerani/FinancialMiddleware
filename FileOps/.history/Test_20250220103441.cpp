@@ -33,8 +33,6 @@ int main() {
 
         // Write to file
         file.WriteParamLine("This is a test line: %d", 1);
-        file.WriteParamLine("Param1,Param2,Param3");
-        file.WriteParamLine("ParamA\tParamB\tParamC");
 
         // Ensure data is written to disk
         file.flush();
