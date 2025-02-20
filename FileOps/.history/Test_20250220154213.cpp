@@ -54,7 +54,6 @@ int main() {
 
         // Read from file
         char buffer[MAX_STRING_LENGTH];
-        file.clear();  // Clear fail and EOF flags
         file.FileSeek(0, std::ios::beg);
         file.ReadLine(buffer);
         std::cout << "Read from file: " << buffer << std::endl;

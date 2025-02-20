@@ -41,7 +41,6 @@ CFileIO::~CFileIO(void)
 
 std::streampos CFileIO::FileSeek(std::streamoff distance, std::ios_base::seekdir direction)
 {
-    fileStream.clear();
     fileStream.seekg(distance, direction);
     return fileStream.tellg();
 }
