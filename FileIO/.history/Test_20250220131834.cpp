@@ -46,13 +46,10 @@ int main() {
         file.FileSeek(0, std::ios::beg);
         int bytesRead = file.ReadLine(buffer);
         std::cout << "Read from file: " << buffer << std::endl;
-        std::cout << "bytesRead: " << bytesRead << std::endl;
-        bytesRead = file.ReadLine(buffer);
+        int bytesRead = file.ReadLine(buffer);
         std::cout << "Read from file: " << buffer << std::endl;
-        std::cout << "bytesRead: " << bytesRead << std::endl;
-        bytesRead = file.ReadLine(buffer);
+        int bytesRead = file.ReadLine(buffer);
         std::cout << "Read from file: " << buffer << std::endl;
-        std::cout << "bytesRead: " << bytesRead << std::endl;
 
         // Break filename
         char filename[MAX_STRING_LENGTH];
