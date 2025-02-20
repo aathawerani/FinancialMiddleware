@@ -156,15 +156,15 @@ int CFileOps::ReadDelimitedLine(std::vector<std::string> &vecBuffer, const char 
 
     std::cout << "FilePos: " << FilePos << std::endl;
     //FilePos += (cPos - cParamString);
-    FilePos += iBytesRead;
+    FilePos += (cPos);
     std::cout << "FilePos: " << FilePos << std::endl;
     cParamString[cPos - cParamString] = 0;
 
-    //if (cParamString[0] == '#')
-        //return -1;
+    if (cParamString[0] == '#')
+        return -1;
 
-    //for (int j = strlen(cParamString) - 1; j > 0 && cParamString[j] == ' '; j--)
-        //cParamString[j] = 0;
+    for (int j = strlen(cParamString) - 1; j > 0 && cParamString[j] == ' '; j--)
+        cParamString[j] = 0;
 
     cPos = nullptr;
 
