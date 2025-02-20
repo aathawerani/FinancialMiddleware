@@ -43,7 +43,6 @@ int CFileOps::ReadDelimitedLine(char **cBuffer, const char *cDelimitedStr, unsig
     std::unique_ptr<char[]> atempStr(new char[maxSize]);
     long iBytesRead;
 
-    std::cout << "FilePos: " << FilePos << std::endl;
     if (FilePos == FileSeek(0, std::ios::end)) // File Processed
         return 0;
 
@@ -63,9 +62,7 @@ int CFileOps::ReadDelimitedLine(char **cBuffer, const char *cDelimitedStr, unsig
         if (cPos - cParamString == 0)
         {
             cParamString++;
-            std::cout << "FilePos: " << FilePos << std::endl;
             FilePos += 1;
-            std::cout << "FilePos: " << FilePos << std::endl;
             continue;
         }
         else
@@ -76,10 +73,7 @@ int CFileOps::ReadDelimitedLine(char **cBuffer, const char *cDelimitedStr, unsig
         cPos = cParamString + strlen(cParamString);
     }
 
-    std::cout << "FilePos: " << FilePos << std::endl;
     FilePos += (cPos - cParamString);
-    std::cout << "FilePos: " << FilePos << std::endl;
-
     cParamString[cPos - cParamString] = 0;
 
     if (cParamString[0] == '#')
@@ -119,7 +113,6 @@ int CFileOps::ReadDelimitedLine(std::vector<std::string> &vecBuffer, const char 
     std::unique_ptr<char[]> aTempStr(new char[maxSize]);
     long iBytesRead;
 
-    std::cout << "FilePos: " << FilePos << std::endl;
     if (FilePos == FileSeek(0, std::ios::end)) // File Processed
         return 0;
 
@@ -140,9 +133,7 @@ int CFileOps::ReadDelimitedLine(std::vector<std::string> &vecBuffer, const char 
         if (cPos - cParamString == 0)
         {
             cParamString++;
-            std::cout << "FilePos: " << FilePos << std::endl;
             FilePos += 1;
-            std::cout << "FilePos: " << FilePos << std::endl;
             continue;
         }
         else
@@ -153,7 +144,6 @@ int CFileOps::ReadDelimitedLine(std::vector<std::string> &vecBuffer, const char 
         cPos = cParamString + strlen(cParamString);
     }
 
-    std::cout << "FilePos: " << FilePos << std::endl;
     FilePos += (cPos - cParamString);
     cParamString[cPos - cParamString] = 0;
 

@@ -40,10 +40,11 @@ int CFileOps::WriteParamLine(const char* cFormat, ...)
 
 int CFileOps::ReadDelimitedLine(char **cBuffer, const char *cDelimitedStr, unsigned int maxSize)
 {
+    std::cout << "got here 10 " << std::endl;
     std::unique_ptr<char[]> atempStr(new char[maxSize]);
     long iBytesRead;
 
-    std::cout << "FilePos: " << FilePos << std::endl;
+    std::cout << "got here 11 " << std::endl;
     if (FilePos == FileSeek(0, std::ios::end)) // File Processed
         return 0;
 
@@ -54,18 +55,18 @@ int CFileOps::ReadDelimitedLine(char **cBuffer, const char *cDelimitedStr, unsig
     if (iBytesRead <= 0)
         return 0;
 
+    std::cout << "got here 12 " << std::endl;
     atempStr[iBytesRead] = 0;
     char *cParamString = atempStr.get();
     char *cPos = nullptr;
 
+    std::cout << "got here 13 " << std::endl;
     while ((cPos = strpbrk(cParamString, "\n\r")))
     {
         if (cPos - cParamString == 0)
         {
             cParamString++;
-            std::cout << "FilePos: " << FilePos << std::endl;
             FilePos += 1;
-            std::cout << "FilePos: " << FilePos << std::endl;
             continue;
         }
         else
@@ -76,10 +77,7 @@ int CFileOps::ReadDelimitedLine(char **cBuffer, const char *cDelimitedStr, unsig
         cPos = cParamString + strlen(cParamString);
     }
 
-    std::cout << "FilePos: " << FilePos << std::endl;
     FilePos += (cPos - cParamString);
-    std::cout << "FilePos: " << FilePos << std::endl;
-
     cParamString[cPos - cParamString] = 0;
 
     if (cParamString[0] == '#')
@@ -115,14 +113,16 @@ int CFileOps::ReadParamLine(char **cBuffer, unsigned int maxSize)
 
 int CFileOps::ReadDelimitedLine(std::vector<std::string> &vecBuffer, const char *cDelimitedStr, unsigned int maxSize)
 {
+    std::cout << "got here 1 " << std::endl;
 
     std::unique_ptr<char[]> aTempStr(new char[maxSize]);
     long iBytesRead;
 
-    std::cout << "FilePos: " << FilePos << std::endl;
+    std::cout << "got here 2 " << std::endl;
     if (FilePos == FileSeek(0, std::ios::end)) // File Processed
         return 0;
 
+    std::cout << "got here 3 " << std::endl;
 
     FileSeek(FilePos, std::ios::beg);
     iBytesRead = ReadLine(aTempStr.get());
@@ -131,18 +131,18 @@ int CFileOps::ReadDelimitedLine(std::vector<std::string> &vecBuffer, const char 
     if (iBytesRead <= 0)
         return 0;
 
+    std::cout << "got here 4 " << std::endl;
     aTempStr[iBytesRead] = 0;
     char *cParamString = aTempStr.get();
     char *cPos = nullptr;
 
+    std::cout << "got here 5 " << std::endl;
     while ((cPos = strpbrk(cParamString, "\n\r")))
     {
         if (cPos - cParamString == 0)
         {
             cParamString++;
-            std::cout << "FilePos: " << FilePos << std::endl;
             FilePos += 1;
-            std::cout << "FilePos: " << FilePos << std::endl;
             continue;
         }
         else
@@ -153,7 +153,6 @@ int CFileOps::ReadDelimitedLine(std::vector<std::string> &vecBuffer, const char 
         cPos = cParamString + strlen(cParamString);
     }
 
-    std::cout << "FilePos: " << FilePos << std::endl;
     FilePos += (cPos - cParamString);
     cParamString[cPos - cParamString] = 0;
 
