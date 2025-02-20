@@ -183,3 +183,23 @@ int CFileOps::ReadFullLine(std::string &sOut)
 
     return rc;
 }
+
+// Implement the flush function
+void CFileOps::flush()
+{
+    std::lock_guard<std::mutex> lock(fileMutex);
+    if (fileStream.is_open())
+    {
+        fileStream.flush();
+    }
+}
+
+// Implement the close function
+void CFileOps::close()
+{
+    std::lock_guard<std::mutex> lock(fileMutex);
+    if (fileStream.is_open())
+    {
+        fileStream.close();
+    }
+}

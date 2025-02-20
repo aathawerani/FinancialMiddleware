@@ -28,7 +28,7 @@ int main() {
     // File operations
     try {
         std::cout << "Attempting to create file: " << fileName << std::endl;
-        CFileOps file(fileName, CFileIO::FLAG_CREATE_ALWAYS | std::ios::in | std::ios::out);
+        CFileIO file(fileName, CFileIO::FLAG_CREATE_ALWAYS | std::ios::in | std::ios::out);
         std::cout << "File created successfully: " << fileName << std::endl;
 
         // Write to file
