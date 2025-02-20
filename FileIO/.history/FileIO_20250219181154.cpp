@@ -20,12 +20,17 @@ const int CFileIO::FLAG_TRUNCATE_EXISTING = std::ios::trunc;
 
 CFileIO::CFileIO(const char *cFileName, int iFlag)
 {
+	std::cout << "got here 1" << std::endl;
     FilePos = 0;
     this->cFileName = cFileName;
-    fileStream.open(cFileName, iFlag | std::ios::out);
+	std::cout << "got here 2" << std::endl;
+    fileStream.open(cFileName, iFlag);
+	std::cout << "got here 3" << std::endl;
     if (!fileStream.is_open())
     {
-        throw std::system_error(errno, std::generic_category(), "CFileIO :: Unable to open file: " + std::string(cFileName));
+		std::cout << "got here 4" << std::endl;
+        std::error_code ec(errno, std::generic_category());
+        throw std::runtime_error(std::string("CFileIO :: Unable to open file: ") + cFileName + " - " + ec.message());
     }
     fileStream.seekg(0, std::ios::beg);
 }

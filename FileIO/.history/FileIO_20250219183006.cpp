@@ -22,7 +22,7 @@ CFileIO::CFileIO(const char *cFileName, int iFlag)
 {
     FilePos = 0;
     this->cFileName = cFileName;
-    fileStream.open(cFileName, iFlag | std::ios::out);
+    fileStream.open(cFileName, iFlag);
     if (!fileStream.is_open())
     {
         throw std::system_error(errno, std::generic_category(), "CFileIO :: Unable to open file: " + std::string(cFileName));

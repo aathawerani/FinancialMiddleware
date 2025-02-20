@@ -32,7 +32,6 @@ int main() {
 
         // Write to file
         file.WriteParamLine("This is a test line: %d", 1);
-        
 
         // Read from file
         char buffer[MAX_STRING_LENGTH];

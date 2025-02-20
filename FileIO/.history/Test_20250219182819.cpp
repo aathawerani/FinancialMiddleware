@@ -10,7 +10,7 @@ int main() {
     // Directory operations
     CDirectory dir;
     const char* folderName = "testFolder";
-    const char* fileName = "testFolder/testFile.txt";
+    const char* fileName = "testFile.txt";
 
     // Create folder
     if (!dir.doesFolderExist(folderName)) {
@@ -32,7 +32,6 @@ int main() {
 
         // Write to file
         file.WriteParamLine("This is a test line: %d", 1);
-        
 
         // Read from file
         char buffer[MAX_STRING_LENGTH];
