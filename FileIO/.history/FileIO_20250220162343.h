@@ -28,7 +28,7 @@ public:
     void flush();
     void close();
     void clear();
-    std::streampos getFpos();
+    void getFpos();
 
 protected:
     std::fstream fileStream;
