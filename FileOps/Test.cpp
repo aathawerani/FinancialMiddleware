@@ -44,11 +44,13 @@ int main() {
         file.FileSeek(0, std::ios::beg);
         file.ReadLine(buffer);
         std::cout << "Read from file: " << buffer << std::endl;
+        std::cout << "file position: " << file.getFpos() << std::endl;
 
         // Read full line
         std::string fullLine;
         file.ReadFullLine(fullLine);
         std::cout << "Read full line: " << fullLine << std::endl;
+        std::cout << "file position: " << file.getFpos() << std::endl;
 
         // Read delimited line into char buffer
         char* cBuffer[10];
