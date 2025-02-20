@@ -34,6 +34,7 @@ int main() {
         // Write to file
         file.WriteParamLine("This is a test line: %d", 1);
         file.WriteParamLine("Param1,Param2,Param3");
+        file.WriteParamLine("ParamA,ParamB,ParamC");
         file.WriteParamLine("ParamA","ParamB","ParamC");
 
         // Ensure data is written to disk
