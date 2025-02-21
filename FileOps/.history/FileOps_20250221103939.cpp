@@ -121,7 +121,7 @@ int CFileOps::ReadDelimitedLine(std::vector<std::string> &vecBuffer, const char 
     std::unique_ptr<char[]> aTempStr(new char[maxSize]);
     long iBytesRead;
 
-    if (!fileStream.is_open()) {
+    if (!is_open()) {
         std::cerr << "Error: File is not open!" << std::endl;
         return -1;
     }
@@ -132,7 +132,6 @@ int CFileOps::ReadDelimitedLine(std::vector<std::string> &vecBuffer, const char 
     if (FilePos == FileSeek(0, std::ios::end)) // File Processed
         return 0;
 
-    clear();
     std::cout << "File position after FileSeek(): " << getFpos() << std::endl;
 
     char buffer[MAX_STRING_LENGTH];
