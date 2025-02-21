@@ -14,8 +14,8 @@ public:
     static const int FLAG_OPEN_ALWAYS;
     static const int FLAG_TRUNCATE_EXISTING;
 
-    CFileIO(std::string fileName, int flags);
-    ~CFileIO();
+    explicit CFileIO(std::string_view fileName, int flags);
+    ~CFileIO() = default;
 
     std::streampos FileSeek(std::streamoff distance, std::ios_base::seekdir direction);
     long WriteLine(const std::string& buffer);
@@ -24,12 +24,13 @@ public:
     void flush();
     void close();
     void clear();
-    std::streampos getFpos() ;
+    std::streampos getFpos() const;
 
 protected:
     mutable std::mutex fileMutex; // Use `mutable` for locking in const methods
     std::fstream fileStream;
-    std::string cFileName;
+    std::string fileName;
+    std::streampos filePos = 0;
 };
 
 #endif // FILEIO_H

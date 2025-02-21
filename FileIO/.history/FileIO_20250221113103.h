@@ -15,7 +15,7 @@ public:
     static const int FLAG_TRUNCATE_EXISTING;
 
     CFileIO(std::string fileName, int flags);
-    ~CFileIO();
+    ~CFileIO() = default;
 
     std::streampos FileSeek(std::streamoff distance, std::ios_base::seekdir direction);
     long WriteLine(const std::string& buffer);
@@ -29,7 +29,8 @@ public:
 protected:
     mutable std::mutex fileMutex; // Use `mutable` for locking in const methods
     std::fstream fileStream;
-    std::string cFileName;
+    std::string fileName;
+    std::streampos filePos = 0;
 };
 
 #endif // FILEIO_H

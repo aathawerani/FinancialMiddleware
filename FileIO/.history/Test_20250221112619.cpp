@@ -47,13 +47,15 @@ int main() {
         }
 
         // Break filename
-        std::string filename, extension;
-        std::tie(filename, extension) = dir.breakFilename(fileName);
-
+        char filename[MAX_STRING_LENGTH];
+        char extension[MAX_STRING_LENGTH];
+        dir.breakFilename(fileName, filename, extension);
         std::cout << "Filename: " << filename << ", Extension: " << extension << std::endl;
 
         // Break qualified name
-        auto [path, fname] = dir.breakQualifiedName(fileName);
+        char path[MAX_STRING_LENGTH];
+        char fname[MAX_STRING_LENGTH];
+        dir.breakQualifiedName(fileName, path, fname);
         std::cout << "Path: " << path << ", Filename: " << fname << std::endl;
 
         // Close the file before moving it

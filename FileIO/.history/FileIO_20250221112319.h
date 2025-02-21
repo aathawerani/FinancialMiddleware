@@ -3,8 +3,11 @@
 
 #include <fstream>
 #include <mutex>
+#include <vector>
 #include <string>
-#include <string_view>
+
+const int MAX_FILE_LENGTH = 1024;
+const int MAX_STRING_LENGTH = 1024;
 
 class CFileIO {
 public:
@@ -14,22 +17,24 @@ public:
     static const int FLAG_OPEN_ALWAYS;
     static const int FLAG_TRUNCATE_EXISTING;
 
-    CFileIO(std::string fileName, int flags);
-    ~CFileIO();
+    CFileIO(const char *cFileName, int iFlag);
+    ~CFileIO(void);
 
     std::streampos FileSeek(std::streamoff distance, std::ios_base::seekdir direction);
-    long WriteLine(const std::string& buffer);
-    long ReadLine(std::string& buffer);
+    long WriteLine(const std::string &buffer);
+    long ReadLine(std::string &buffer);
 
+    // Add the flush and close function declarations
     void flush();
     void close();
     void clear();
-    std::streampos getFpos() ;
+    std::streampos getFpos();
 
 protected:
-    mutable std::mutex fileMutex; // Use `mutable` for locking in const methods
     std::fstream fileStream;
     std::string cFileName;
+    std::mutex fileMutex;
+    std::streampos FilePos;
 };
 
 #endif // FILEIO_H

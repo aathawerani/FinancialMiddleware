@@ -18,9 +18,10 @@ const int CFileIO::FLAG_OPEN_EXISTING = std::ios::in;
 const int CFileIO::FLAG_OPEN_ALWAYS = std::ios::in | std::ios::out;
 const int CFileIO::FLAG_TRUNCATE_EXISTING = std::ios::trunc;
 
-CFileIO::CFileIO(std::string fileName, int flags)
+CFileIO::CFileIO(const std::string &fileName, int flags)
 {
-    cFileName = fileName;
+    FilePos = 0;
+    this->cFileName = fileName;
     
     fileStream.open(fileName, flags | std::ios::out);
     if (!fileStream.is_open())
@@ -108,8 +109,7 @@ void CFileIO::clear()
     }
 }
 
-std::streampos CFileIO::getFpos() 
+std::streampos CFileIO::getFpos()
 {
-    return fileStream.is_open() ? fileStream.tellg() : std::streampos(-1);
+    return fileStream.is_open() ? fileStream.tellg() : -1;
 }
-

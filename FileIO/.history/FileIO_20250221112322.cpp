@@ -7,10 +7,11 @@
 #include <string>
 #include <memory>
 #include <stdexcept>
-#include <cstdarg>
-#include <system_error>
-#include <cerrno>
+#include <cstdarg> // Include for va_start and va_end
+#include <system_error> // Include for system error codes
+#include <cerrno> // Include for errno
 #include <iostream>
+#include <cstring>
 
 const int CFileIO::FLAG_CREATE_NEW = std::ios::trunc;
 const int CFileIO::FLAG_CREATE_ALWAYS = std::ios::trunc;
@@ -18,19 +19,19 @@ const int CFileIO::FLAG_OPEN_EXISTING = std::ios::in;
 const int CFileIO::FLAG_OPEN_ALWAYS = std::ios::in | std::ios::out;
 const int CFileIO::FLAG_TRUNCATE_EXISTING = std::ios::trunc;
 
-CFileIO::CFileIO(std::string fileName, int flags)
+CFileIO::CFileIO(const char *cFileName, int iFlag)
 {
-    cFileName = fileName;
-    
-    fileStream.open(fileName, flags | std::ios::out);
+    FilePos = 0;
+    this->cFileName = cFileName;
+    fileStream.open(cFileName, iFlag | std::ios::out);
     if (!fileStream.is_open())
     {
-        throw std::system_error(errno, std::generic_category(), "CFileIO: Unable to open file: " + fileName);
+        throw std::system_error(errno, std::generic_category(), "CFileIO :: Unable to open file: " + std::string(cFileName));
     }
     fileStream.seekg(0, std::ios::beg);
 }
 
-CFileIO::~CFileIO()
+CFileIO::~CFileIO(void)
 {
     if (fileStream.is_open())
     {
@@ -38,10 +39,10 @@ CFileIO::~CFileIO()
     }
 }
 
-std::streampos CFileIO::FileSeek(std::streamoff offset, std::ios_base::seekdir direction)
+std::streampos CFileIO::FileSeek(std::streamoff distance, std::ios_base::seekdir direction)
 {
     fileStream.clear();
-    fileStream.seekg(offset, direction);
+    fileStream.seekg(distance, direction);
     return fileStream.tellg();
 }
 
@@ -53,14 +54,14 @@ long CFileIO::WriteLine(const std::string &buffer)
         return -1;
     }
 
-    fileStream << buffer << "\n"; // Use `\n` for cross-platform compatibility
+    fileStream << buffer << "\r\n"; // Write the line with newline
 
     if (fileStream.fail())
     {
         return -1;
     }
 
-    return buffer.length() + 1;
+    return buffer.length() + 2; // Return length including `\r\n`
 }
 
 long CFileIO::ReadLine(std::string &buffer)
@@ -71,16 +72,20 @@ long CFileIO::ReadLine(std::string &buffer)
         return -1;
     }
 
-    buffer.clear();
+    buffer.clear(); // Clear previous content
 
     if (!std::getline(fileStream, buffer))
     {
-        return fileStream.eof() ? 0 : -1;
+        if (fileStream.eof())
+            return 0; // End of file reached
+        return -1; // Some other failure
     }
 
-    return buffer.length();
+    return buffer.length(); // Return the length of the line read
 }
 
+
+// Implement the flush function
 void CFileIO::flush()
 {
     std::lock_guard<std::mutex> lock(fileMutex);
@@ -90,6 +95,7 @@ void CFileIO::flush()
     }
 }
 
+// Implement the close function
 void CFileIO::close()
 {
     std::lock_guard<std::mutex> lock(fileMutex);
@@ -108,8 +114,11 @@ void CFileIO::clear()
     }
 }
 
-std::streampos CFileIO::getFpos() 
+std::streampos CFileIO::getFpos()
 {
-    return fileStream.is_open() ? fileStream.tellg() : std::streampos(-1);
+    if (fileStream.is_open())
+    {
+        return fileStream.tellg();
+    }
+    return -1; // Return an invalid position if the file is not open
 }
-

@@ -39,21 +39,22 @@ int main() {
         file.flush();
 
         // Read multiple lines from the file
+        char buffer[MAX_STRING_LENGTH];
         file.FileSeek(0, std::ios::beg);
-
-        std::string line;
-        while (file.ReadLine(line) > 0) {
-            std::cout << "Read line: " << line << std::endl;
-        }
+        int bytesRead = file.ReadLine(buffer);
+        bytesRead = file.ReadLine(buffer);
+        bytesRead = file.ReadLine(buffer);
 
         // Break filename
-        std::string filename, extension;
-        std::tie(filename, extension) = dir.breakFilename(fileName);
-
+        char filename[MAX_STRING_LENGTH];
+        char extension[MAX_STRING_LENGTH];
+        dir.breakFilename(fileName, filename, extension);
         std::cout << "Filename: " << filename << ", Extension: " << extension << std::endl;
 
         // Break qualified name
-        auto [path, fname] = dir.breakQualifiedName(fileName);
+        char path[MAX_STRING_LENGTH];
+        char fname[MAX_STRING_LENGTH];
+        dir.breakQualifiedName(fileName, path, fname);
         std::cout << "Path: " << path << ", Filename: " << fname << std::endl;
 
         // Close the file before moving it

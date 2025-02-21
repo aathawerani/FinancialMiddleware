@@ -110,6 +110,5 @@ void CFileIO::clear()
 
 std::streampos CFileIO::getFpos() 
 {
-    return fileStream.is_open() ? fileStream.tellg() : std::streampos(-1);
+    return fileStream.is_open() ? fileStream.tellg() : -1;
 }
-
