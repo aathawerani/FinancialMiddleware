@@ -49,7 +49,7 @@ int CFileOps::ReadDelimitedLine(std::span<char> buffer, std::string_view delimit
         std::string token = tempStr.substr(0, pos);
         tempStr.erase(0, pos + 1);
         if (count < buffer.size()) {
-            std::copy_n(token.begin(), std::min(token.size(), buffer.size()), buffer.begin() + count);
+            std::copy(token.begin(), token.end(), buffer[count].begin());
         }
         count++;
     }

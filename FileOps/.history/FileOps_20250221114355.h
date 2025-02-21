@@ -19,7 +19,7 @@ public:
     int ReadParamLine(std::span<char> buffer, unsigned int maxSize);
     int ReadDelimitedLine(std::vector<std::string>& vecBuffer, std::string_view delimiter, unsigned int maxSize);
     int ReadParamLine(std::vector<std::string>& vecBuffer, unsigned int maxSize);
-    int ReadFullLine(std::string& sOut);
+
 };
 
 #endif // FILEOPS_H
