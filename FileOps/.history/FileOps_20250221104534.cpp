@@ -129,7 +129,7 @@ int CFileOps::ReadDelimitedLine(std::vector<std::string> &vecBuffer, const char 
     std::cout << "File position before ReadLine(): " << getFpos() << std::endl;
 
     std::cout << "FilePos: " << FilePos << std::endl;
-    if (fileStream.eof()) // File Processed
+    if (eof()) // File Processed
         return 0;
 
     clear();
