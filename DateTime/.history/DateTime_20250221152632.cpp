@@ -72,19 +72,21 @@ bool CDateTime::addDays(int days) {
     return addSeconds(days * 86400);
 }
 
-bool CDateTime::getWeekDay(std::string& buffer) {
+bool CDateTime::getWeekDay(std::string &buffer) {
     wchar_t wBuffer[DT_STRING_LEN];
 
-    // ✅ Corrected: `this->systemTime` properly passed to `GetDateFormatW`
+    // ✅ FIX: Access member variable correctly
     if (GetDateFormatW(LOCALE_USER_DEFAULT, 0, &this->systemTime, L"dddd", wBuffer, DT_STRING_LEN) > 0) {
+        // ✅ FIX: Convert wide string (wchar_t) to narrow string (char) properly
         int requiredSize = WideCharToMultiByte(CP_UTF8, 0, wBuffer, -1, nullptr, 0, nullptr, nullptr);
         if (requiredSize > 0) {
-            buffer.resize(requiredSize - 1);
-            WideCharToMultiByte(CP_UTF8, 0, wBuffer, -1, &buffer[0], requiredSize, nullptr, nullptr);
+            std::string result(requiredSize - 1, 0);
+            WideCharToMultiByte(CP_UTF8, 0, wBuffer, -1, &result[0], requiredSize, nullptr, nullptr);
+            buffer = result;
             return true;
         }
     }
-
+    
     return false;
 }
 

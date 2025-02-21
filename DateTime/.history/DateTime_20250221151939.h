@@ -27,7 +27,7 @@ public:
     bool addSeconds(unsigned int seconds);
     bool addDays(int days);
 
-    [[nodiscard]] bool getWeekDay(std::string& buffer); 
+    [[nodiscard]] std::string getWeekDay() const;
     [[nodiscard]] std::string toString() const;
     [[nodiscard]] std::string toStringFull() const;
     [[nodiscard]] std::string toGMTString() const;

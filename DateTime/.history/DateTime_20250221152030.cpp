@@ -1,13 +1,9 @@
 #include "DateTime.h"
 #include <iostream>
+#include <format>
 #include <iomanip>
 #include <sstream>
 #include <chrono>
-#include <windows.h>
-
-#define DT_STRING_LEN 256
-#define SECOND 10000000ULL // 1 second in 100-nanosecond intervals
-#define DAY (SECOND * 86400ULL) // 1 day in 100-nanosecond intervals
 
 CDateTime::CDateTime() {
     GetLocalTime(&systemTime);
@@ -69,23 +65,16 @@ bool CDateTime::addSeconds(unsigned int seconds) {
 }
 
 bool CDateTime::addDays(int days) {
-    return addSeconds(days * 86400);
+    return addSeconds(days * (DAY / SECOND));
 }
 
-bool CDateTime::getWeekDay(std::string& buffer) {
-    wchar_t wBuffer[DT_STRING_LEN];
-
-    // ✅ Corrected: `this->systemTime` properly passed to `GetDateFormatW`
-    if (GetDateFormatW(LOCALE_USER_DEFAULT, 0, &this->systemTime, L"dddd", wBuffer, DT_STRING_LEN) > 0) {
-        int requiredSize = WideCharToMultiByte(CP_UTF8, 0, wBuffer, -1, nullptr, 0, nullptr, nullptr);
-        if (requiredSize > 0) {
-            buffer.resize(requiredSize - 1);
-            WideCharToMultiByte(CP_UTF8, 0, wBuffer, -1, &buffer[0], requiredSize, nullptr, nullptr);
-            return true;
-        }
+std::string CDateTime::getWeekDay() const {
+    wchar_t buffer[256]{};
+    if (GetDateFormatW(LOCALE_USER_DEFAULT, 0, &systemTime, L"dddd", buffer, std::size(buffer)) > 0) {
+        std::wstring wstr(buffer);
+        return std::string(wstr.begin(), wstr.end()); // Convert wstring to string
     }
-
-    return false;
+    return {};
 }
 
 std::string CDateTime::toString() const {

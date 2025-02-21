@@ -51,13 +51,9 @@ int main() {
             addedDay.wYear, addedDay.wMonth, addedDay.wDay,
             addedDay.wHour, addedDay.wMinute, addedDay.wSecond);
 
-        // ✅ Fix: Get week day properly
-        std::string weekDay;
-        if (dateTime.getWeekDay(weekDay)) {
-            std::cout << "Week day: " << weekDay << "\n";
-        } else {
-            std::cerr << "Failed to get the day of the week.\n";
-        }
+        // Get week day
+        std::string weekDay = dateTime.getWeekDay();
+        std::cout << "Week day: " << weekDay << "\n";
 
         // Convert to string formats
         std::cout << "DateTime string: " << dateTime.toString() << "\n";
