@@ -37,12 +37,12 @@ int main() {
         file.WriteLine(testLine1, strlen(testLine1));
         std::cout << "testLine1: " << testLine1 << std::endl;
         std::cout << "length: " << strlen(testLine1) << std::endl;
-        file.WriteLine(testLine2, strlen(testLine2));
-        std::cout << "testLine2: " << testLine2 << std::endl;
-        std::cout << "length: " << strlen(testLine2) << std::endl;
-        file.WriteLine(testLine3, strlen(testLine3));
-        std::cout << "testLine3: " << testLine3 << std::endl;
-        std::cout << "length: " << strlen(testLine3) << std::endl;
+            file.WriteLine(testLine2, strlen(testLine2));
+            std::cout << "testLine2: " << testLine2 << std::endl;
+            std::cout << "length: " << strlen(testLine2) << std::endl;
+                file.WriteLine(testLine3, strlen(testLine3));
+                std::cout << "testLine3: " << testLine3 << std::endl;
+                std::cout << "length: " << strlen(testLine3) << std::endl;
             
         // Ensure data is written to disk
         file.flush();
