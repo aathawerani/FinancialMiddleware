@@ -15,6 +15,8 @@ int main() {
     const char* folderName = "testFolder";
     const char* fileName = "testFolder/testFile.txt";
 
+    std::cout << "Starting Main: " << std::endl;
+
     // Create folder
     if (!dir.doesFolderExist(folderName)) {
         if (dir.createFolder(folderName)) {
@@ -48,7 +50,7 @@ int main() {
 
         // Read full line
         std::string fullLine;
-        file.ReadLine(fullLine);
+        file.ReadFullLine(fullLine);
         std::cout << "Read full line: " << fullLine << std::endl;
 
         // Read delimited line into vector

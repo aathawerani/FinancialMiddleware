@@ -30,28 +30,30 @@ int CFileOps::WriteParamLine(std::string_view format, ...) {
     return WriteLine(tempStr);
 }
 
-
-// Uses std::vector<std::string> instead of char**
-int CFileOps::ReadDelimitedLine(std::vector<std::string>& vecBuffer, std::string_view delimiter, unsigned int maxSize) {
+// Uses std::span<char> for safe buffer handling
+int CFileOps::ReadDelimitedLine(std::span<char> buffer, std::string_view delimiter, unsigned int maxSize) {
     if (!fileStream.is_open() || fileStream.eof()) {
         return -1;
     }
 
-    std::string line;
-    if (!std::getline(fileStream, line)) {
+    std::string tempStr;
+    if (!std::getline(fileStream, tempStr)) {
         return fileStream.eof() ? 0 : -1;
     }
 
-    line.erase(line.find_last_not_of("\n\r") + 1); // Trim newline characters
+    tempStr.erase(tempStr.find_last_not_of("\n\r") + 1); // Trim newline characters
 
     size_t pos = 0;
-    while ((pos = line.find_first_of(delimiter)) != std::string::npos) {
-        vecBuffer.emplace_back(line.substr(0, pos));
-        line.erase(0, pos + 1);
+    size_t count = 0;
+    while ((pos = tempStr.find_first_of(delimiter)) != std::string::npos) {
+        std::string token = tempStr.substr(0, pos);
+        tempStr.erase(0, pos + 1);
+        if (count < buffer.size()) {
+            std::copy_n(token.begin(), std::min(token.size(), buffer.size()), buffer.begin() + count);
+        }
+        count++;
     }
-    vecBuffer.emplace_back(line);
-
-    return static_cast<int>(vecBuffer.size());
+    return count + 1;
 }
 
 int CFileOps::ReadParamLine(std::vector<std::string>& vecBuffer, unsigned int maxSize) {

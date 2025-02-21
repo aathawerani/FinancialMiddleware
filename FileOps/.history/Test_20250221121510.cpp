@@ -48,7 +48,7 @@ int main() {
 
         // Read full line
         std::string fullLine;
-        file.ReadLine(fullLine);
+        file.ReadFullLine(fullLine);
         std::cout << "Read full line: " << fullLine << std::endl;
 
         // Read delimited line into vector
