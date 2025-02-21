@@ -129,7 +129,7 @@ int CFileOps::ReadDelimitedLine(std::vector<std::string> &vecBuffer, const char 
     int bytesRead = ReadLine(buffer);
     std::cout << "Read from file: " << buffer << std::endl;
     std::cout << "bytesRead: " << bytesRead << std::endl;
-    std::cout << "file position: " << getFpos() << std::endl;
+    std::cout << "file position: " << file.getFpos() << std::endl;
 
     //FileSeek(FilePos, std::ios::beg);
     iBytesRead = ReadLine(aTempStr.get());
