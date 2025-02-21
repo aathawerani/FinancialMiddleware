@@ -34,6 +34,8 @@ int CFileOps::WriteParamLine(const char* cFormat, ...)
     va_end(arglist);
 
     snprintf(tempStr, MAX_FILE_LENGTH, "%s", logCharString);
+    std::cout << "tempStr: " << tempStr << std::endl;
+    std::cout << "length: " << strlen(tempStr) << std::endl;
     return WriteLine(tempStr, strlen(tempStr));
 }
 

@@ -34,6 +34,8 @@ int CFileOps::WriteParamLine(const char* cFormat, ...)
     va_end(arglist);
 
     snprintf(tempStr, MAX_FILE_LENGTH, "%s", logCharString);
+    std::cout << "tempStr: " << tempStr << std::endl;
+    std::cout << "length: " << strlen(tempStr) << std::endl;
     return WriteLine(tempStr, strlen(tempStr));
 }
 
@@ -129,6 +131,8 @@ int CFileOps::ReadDelimitedLine(std::vector<std::string> &vecBuffer, const char 
 
     //FileSeek(FilePos, std::ios::beg);
     iBytesRead = ReadLine(aTempStr.get());
+    std::cout << "aTempStr.get() " << aTempStr.get() << std::endl;
+    std::cout << "bytes read " << iBytesRead << std::endl;
     if (iBytesRead <= 0)
         return 0;
 
@@ -141,6 +145,9 @@ int CFileOps::ReadDelimitedLine(std::vector<std::string> &vecBuffer, const char 
         if (cPos - cParamString == 0)
         {
             cParamString++;
+            std::cout << "FilePos: " << FilePos << std::endl;
+            FilePos += 1;
+            std::cout << "FilePos: " << FilePos << std::endl;
             continue;
         }
         else
@@ -151,6 +158,10 @@ int CFileOps::ReadDelimitedLine(std::vector<std::string> &vecBuffer, const char 
         cPos = cParamString + strlen(cParamString);
     }
 
+    std::cout << "FilePos: " << FilePos << std::endl;
+    //FilePos += (cPos - cParamString);
+    FilePos += iBytesRead + 1;
+    std::cout << "FilePos: " << FilePos << std::endl;
     cParamString[cPos - cParamString] = 0;
 
     //if (cParamString[0] == '#')
