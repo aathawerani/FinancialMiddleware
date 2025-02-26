@@ -34,7 +34,6 @@ int main() {
 
         // Example: Convert between Wide and Multibyte Strings
         std::wstring wideStr = CommonFunctions::ConvMBSToWCS("Hello");
-        std::wcout << L"Wide String: " << wideStr << std::endl;
         std::string narrowStr = CommonFunctions::ConvWCSToMBS(wideStr);
         std::cout << "Wide to Narrow: " << narrowStr << std::endl;
         
