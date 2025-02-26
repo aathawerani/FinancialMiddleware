@@ -13,8 +13,6 @@
 #include <span>
 #include <ranges>
 
-#pragma comment(lib, "Rpcrt4.lib")
-
 std::string CommonFunctions::BinToHex(std::span<const unsigned char> bin) {
     std::ostringstream oss;
     for (unsigned char byte : bin) {
