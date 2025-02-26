@@ -65,14 +65,13 @@ int main() {
         // Example: EBCDIC to ASCII Conversion
         std::vector<unsigned char> ebcdicBuffer = {0xC1, 0xC2, 0xC3};  // Example EBCDIC data
         CommonFunctions::ebcdicToAscii(ebcdicBuffer);
-        
         std::cout << "EBCDIC to ASCII Conversion:\n";
         for (unsigned char byte : ebcdicBuffer) {
             std::cout << "EBCDIC: " << static_cast<int>(byte)
-                      << " -> ASCII: " << static_cast<int>(EBCDIC_TO_ASCII[static_cast<size_t>(byte)])
-                      << " (" << static_cast<char>(EBCDIC_TO_ASCII[static_cast<size_t>(byte)]) << ")\n";
+                      << " -> ASCII: " << static_cast<int>(EBCDIC_TO_ASCII[byte])
+                      << " (" << static_cast<char>(EBCDIC_TO_ASCII[byte]) << ")\n";
         }
-                        
+                
         // Example: Generate GUID
         std::string guid = CommonFunctions::GetGUID();
         std::cout << "Generated GUID: " << guid << std::endl;

@@ -1,6 +1,3 @@
-#ifndef COMMONFUNCTIONS_H
-#define COMMONFUNCTIONS_H
-
 #include <string>
 #include <vector>
 #include <string_view>
@@ -8,8 +5,6 @@
 #include <windows.h>
 #include <optional>
 #include <atomic>
-
-extern const std::array<unsigned char, 256> EBCDIC_TO_ASCII;  // Declare as extern
 
 class CommonFunctions {
 public:
@@ -36,4 +31,3 @@ public:
     static void timeStamp(std::string& timeStr, SYSTEMTIME& systemTime);
 };
 
-#endif
