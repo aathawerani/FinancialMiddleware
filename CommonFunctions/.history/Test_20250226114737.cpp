@@ -5,8 +5,6 @@
 #include <optional>
 #include <atomic>
 #include <thread>
-#include <io.h>
-#include <fcntl.h>
 
 int main() {
     try {
