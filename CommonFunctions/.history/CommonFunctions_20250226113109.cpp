@@ -57,15 +57,7 @@ void CommonFunctions::timeStamp(std::string& timeStr, SYSTEMTIME& systemTime) {
 }
 
 std::wstring CommonFunctions::ConvMBSToWCS(std::string_view str) {
-    if (str.empty()) return {};
-
-    int size_needed = MultiByteToWideChar(CP_UTF8, 0, str.data(), static_cast<int>(str.size()), nullptr, 0);
-    if (size_needed <= 0) return {};
-
-    std::wstring result(size_needed, 0);
-    MultiByteToWideChar(CP_UTF8, 0, str.data(), static_cast<int>(str.size()), result.data(), size_needed);
-    
-    return result;
+    return std::wstring(str.begin(), str.end());
 }
 
 std::string CommonFunctions::ConvWCSToMBS(std::wstring_view wstr) {

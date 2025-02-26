@@ -14,16 +14,15 @@ int main() {
         std::cout << "Binary to Hex: " << hexStr << std::endl;
 
         // Example: Convert Hex to Binary
-        auto binDataOpt = CommonFunctions::HexToBin(hexStr);
-        if (binDataOpt) {
-            std::vector<unsigned char> binData(binDataOpt->begin(), binDataOpt->end());
+        auto binData = CommonFunctions::HexToBin(hexStr);
+        if (binData) {
             std::cout << "Hex to Binary: ";
-            for (unsigned char byte : binData) {
+            for (unsigned char byte : *binData) {
                 std::cout << std::hex << static_cast<int>(byte) << " ";
             }
             std::cout << std::endl;
         }
-        
+
         // Example: String Split
         std::vector<std::string_view> tokens = CommonFunctions::StringSplit("key1=value1;key2=value2", ";");
         std::cout << "String Split: ";
@@ -49,7 +48,7 @@ int main() {
         }
         
         // Test tokenize
-        auto fruitTokens = CommonFunctions::tokenize("apple,banana,grape", ",");
+        auto tokens = CommonFunctions::tokenize("apple,banana,grape", ",");
         std::cout << "tokenize: ";
         for (const auto& token : tokens) {
             std::cout << "[" << token << "] ";

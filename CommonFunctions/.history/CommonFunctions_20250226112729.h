@@ -37,3 +37,28 @@ public:
     static void timeStamp(std::string& timeStr, SYSTEMTIME& systemTime);
 };
 
+#ifndef COMMON_FUNCTIONS_H
+#define COMMON_FUNCTIONS_H
+
+#include <string>
+#include <vector>
+#include <optional>
+#include <span>
+#include <string_view>
+
+class CommonFunctions {
+public:
+    static std::string BinToHex(std::span<const unsigned char> bin);
+    static std::optional<std::string> HexToBin(const std::string& hex);
+    static std::vector<std::string_view> StringSplit(std::string_view str, std::string_view delimiter);
+    static std::wstring ConvMBSToWCS(std::string_view str);
+    static std::string ConvWCSToMBS(std::wstring_view wstr);
+    static std::vector<std::pair<std::string, std::string>> parseKeyValueString(std::string_view input);
+    
+    static int ebcdicToAscii(std::span<unsigned char> buffer);
+    static int asciiToEbcdic(std::span<unsigned char> buffer);
+
+    static std::string GetGUID();
+};
+
+#endif // COMMON_FUNCTIONS_H

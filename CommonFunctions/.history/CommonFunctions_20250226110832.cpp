@@ -1,13 +1,10 @@
 #include "CommonFunctions.h"
+#include <iostream>
 #include <sstream>
 #include <iomanip>
-#include <algorithm>
-#include <charconv>
-#include <memory>
-#include <stdexcept>
-#include <iostream>
-#include <cstring>
 #include <vector>
+#include <rpc.h>
+#include <string>
 #include <optional>
 #include <array>
 #include <span>
@@ -44,42 +41,13 @@ std::vector<std::string_view> CommonFunctions::StringSplit(std::string_view str,
     return result;
 }
 
-bool CommonFunctions::strMatch(std::string_view src, std::string_view dest) {
-    return src == dest;
-}
-
-void CommonFunctions::timeStamp(std::string& timeStr, SYSTEMTIME& systemTime) {
-    char buffer[20];
-    sprintf_s(buffer, "%04d-%02d-%02d %02d:%02d:%02d", 
-              systemTime.wYear, systemTime.wMonth, systemTime.wDay, 
-              systemTime.wHour, systemTime.wMinute, systemTime.wSecond);
-    timeStr = buffer;
-}
-
 std::wstring CommonFunctions::ConvMBSToWCS(std::string_view str) {
-    if (str.empty()) return {};
-
-    int size_needed = MultiByteToWideChar(CP_UTF8, 0, str.data(), static_cast<int>(str.size()), nullptr, 0);
-    if (size_needed <= 0) return {};
-
-    std::wstring result(size_needed, 0);
-    MultiByteToWideChar(CP_UTF8, 0, str.data(), static_cast<int>(str.size()), result.data(), size_needed);
-    
-    return result;
+    return std::wstring(str.begin(), str.end());
 }
 
 std::string CommonFunctions::ConvWCSToMBS(std::wstring_view wstr) {
-    if (wstr.empty()) return {};
-
-    int size_needed = WideCharToMultiByte(CP_UTF8, 0, wstr.data(), static_cast<int>(wstr.size()), nullptr, 0, nullptr, nullptr);
-    if (size_needed <= 0) return {};
-
-    std::string result(size_needed, 0);
-    WideCharToMultiByte(CP_UTF8, 0, wstr.data(), static_cast<int>(wstr.size()), result.data(), size_needed, nullptr, nullptr);
-    
-    return result;
+    return std::string(wstr.begin(), wstr.end());
 }
-
 
 std::vector<std::pair<std::string, std::string>> CommonFunctions::parseKeyValueString(std::string_view input) {
     std::vector<std::pair<std::string, std::string>> keyValueArray;
@@ -95,29 +63,16 @@ std::vector<std::pair<std::string, std::string>> CommonFunctions::parseKeyValueS
     return keyValueArray;
 }
 
-namespace {
-    const std::array<unsigned char, 256> EBCDIC_TO_ASCII = {
-        /* 0x00 - 0x0F */ 0x00, 0x01, 0x02, 0x03, 0x9C, 0x09, 0x86, 0x7F, 0x97, 0x8D, 0x8E, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,
-        /* 0x10 - 0x1F */ 0x10, 0x11, 0x12, 0x13, 0x9D, 0x85, 0x08, 0x87, 0x18, 0x19, 0x92, 0x8F, 0x1C, 0x1D, 0x1E, 0x1F,
-        /* 0x20 - 0x2F */ 0x80, 0x81, 0x82, 0x83, 0x84, 0x0A, 0x17, 0x1B, 0x88, 0x89, 0x8A, 0x8B, 0x8C, 0x05, 0x06, 0x07,
-        /* (other mappings omitted for brevity) */
-    };
-
-    const std::array<unsigned char, 256> ASCII_TO_EBCDIC = {
-        /* (Mapping omitted, but follows a similar structure) */
-    };
-}
-
 int CommonFunctions::ebcdicToAscii(std::span<unsigned char> buffer) {
     for (auto& byte : buffer) {
-        byte = EBCDIC_TO_ASCII[byte];
+        byte = static_cast<unsigned char>(std::toupper(byte));
     }
     return 1;
 }
 
 int CommonFunctions::asciiToEbcdic(std::span<unsigned char> buffer) {
     for (auto& byte : buffer) {
-        byte = ASCII_TO_EBCDIC[byte];
+        byte = static_cast<unsigned char>(std::tolower(byte));
     }
     return 1;
 }

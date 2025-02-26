@@ -7,6 +7,7 @@
 #include <stdexcept>
 #include <iostream>
 #include <cstring>
+
 #include <vector>
 #include <optional>
 #include <array>
@@ -57,29 +58,12 @@ void CommonFunctions::timeStamp(std::string& timeStr, SYSTEMTIME& systemTime) {
 }
 
 std::wstring CommonFunctions::ConvMBSToWCS(std::string_view str) {
-    if (str.empty()) return {};
-
-    int size_needed = MultiByteToWideChar(CP_UTF8, 0, str.data(), static_cast<int>(str.size()), nullptr, 0);
-    if (size_needed <= 0) return {};
-
-    std::wstring result(size_needed, 0);
-    MultiByteToWideChar(CP_UTF8, 0, str.data(), static_cast<int>(str.size()), result.data(), size_needed);
-    
-    return result;
+    return std::wstring(str.begin(), str.end());
 }
 
 std::string CommonFunctions::ConvWCSToMBS(std::wstring_view wstr) {
-    if (wstr.empty()) return {};
-
-    int size_needed = WideCharToMultiByte(CP_UTF8, 0, wstr.data(), static_cast<int>(wstr.size()), nullptr, 0, nullptr, nullptr);
-    if (size_needed <= 0) return {};
-
-    std::string result(size_needed, 0);
-    WideCharToMultiByte(CP_UTF8, 0, wstr.data(), static_cast<int>(wstr.size()), result.data(), size_needed, nullptr, nullptr);
-    
-    return result;
+    return std::string(wstr.begin(), wstr.end());
 }
-
 
 std::vector<std::pair<std::string, std::string>> CommonFunctions::parseKeyValueString(std::string_view input) {
     std::vector<std::pair<std::string, std::string>> keyValueArray;
@@ -121,6 +105,33 @@ int CommonFunctions::asciiToEbcdic(std::span<unsigned char> buffer) {
     }
     return 1;
 }
+
+std::string CommonFunctions::GetGUID() {
+    UUID uuid;
+    UuidCreate(&uuid);
+    RPC_CSTR uuidString;
+    UuidToStringA(&uuid, &uuidString);
+    std::string guid(reinterpret_cast<char*>(uuidString));
+    RpcStringFreeA(&uuidString);
+    
+    std::ranges::transform(guid, guid.begin(), ::toupper);
+    return guid;
+}
+
+
+
+#include "CommonFunctions.h"
+#include <iostream>
+#include <sstream>
+#include <iomanip>
+#include <vector>
+#include <rpc.h>
+#include <string>
+#include <optional>
+#include <array>
+#include <span>
+#include <ranges>
+
 
 std::string CommonFunctions::GetGUID() {
     UUID uuid;

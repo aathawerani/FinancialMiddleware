@@ -37,3 +37,4 @@ public:
     static void timeStamp(std::string& timeStr, SYSTEMTIME& systemTime);
 };
 
+#endif // COMMONFUNCTIONS_H
