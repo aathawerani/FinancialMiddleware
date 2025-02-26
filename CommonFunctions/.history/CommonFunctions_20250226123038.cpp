@@ -143,6 +143,15 @@ const std::array<unsigned char, 256> ASCII_TO_EBCDIC = {
     /* 0xF0 - 0xFF */ 0x94, 0x95, 0x96, 0x97, 0x98, 0x99, 0xA2, 0xA3, 0xA4, 0xA5, 0xA6, 0xA7, 0xA8, 0xA9, 0xC0, 0x4A
 };
 
+const std::array<unsigned char, 256>& CommonFunctions::getEbcdicToAsciiMap() {
+    static const std::array<unsigned char, 256> EBCDIC_TO_ASCII = {
+        /* Mapping values */
+    };
+    return EBCDIC_TO_ASCII;
+}
+
+
+
 int CommonFunctions::ebcdicToAscii(std::span<unsigned char> buffer) {
     for (auto& byte : buffer) {
         byte = EBCDIC_TO_ASCII[byte];

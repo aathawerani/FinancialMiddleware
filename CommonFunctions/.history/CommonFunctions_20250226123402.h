@@ -24,7 +24,9 @@ public:
     static std::string ConvWCSToMBS(std::wstring_view wstr);
     static std::vector<std::pair<std::string, std::string>> parseKeyValueString(std::string_view input);
 
-    static const std::array<unsigned char, 256>& getEbcdicToAsciiMap();
+    static const std::array<unsigned char, 256>& getEbcdicToAsciiMap() {
+        return EBCDIC_TO_ASCII;
+    }
     
     static int ebcdicToAscii(std::span<unsigned char> buffer);
     static int asciiToEbcdic(std::span<unsigned char> buffer);
