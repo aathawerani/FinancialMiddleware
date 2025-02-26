@@ -49,7 +49,7 @@ int main() {
         // Test tokenize
         auto fruitTokens = CommonFunctions::tokenize("apple,banana,grape", ",");
         std::cout << "tokenize: ";
-        for (const auto& token : fruitTokens) {
+        for (const auto& token : tokens) {
             std::cout << "[" << token << "] ";
         }
         std::cout << std::endl;
