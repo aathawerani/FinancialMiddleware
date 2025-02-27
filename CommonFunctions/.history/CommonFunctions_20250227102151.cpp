@@ -152,9 +152,16 @@ int CommonFunctions::ebcdicToAscii(std::span<unsigned char> buffer) {
 }
 
 int CommonFunctions::asciiToEbcdic(std::span<unsigned char> buffer) {
+    std::cout << "ASCII_TO_EBCDIC[0x41]: 0x" << std::hex << static_cast<int>(ASCII_TO_EBCDIC[0x41]) << "\n";
+    std::cout << "ASCII_TO_EBCDIC[0x42]: 0x" << std::hex << static_cast<int>(ASCII_TO_EBCDIC[0x42]) << "\n";
+    std::cout << "ASCII_TO_EBCDIC[0x43]: 0x" << std::hex << static_cast<int>(ASCII_TO_EBCDIC[0x43]) << "\n";
+
     for (auto& byte : buffer) {
         unsigned char original = byte;
         byte = ASCII_TO_EBCDIC[byte];
+
+        std::cout << "ASCII: 0x" << std::hex << static_cast<int>(original)
+                  << " -> EBCDIC: 0x" << static_cast<int>(byte) << "\n";
     }
     return 1;
 }
