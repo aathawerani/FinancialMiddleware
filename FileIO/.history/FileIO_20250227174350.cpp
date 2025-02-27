@@ -123,7 +123,6 @@ long CFileIO::WriteLine(const std::vector<unsigned char>& buffer) {
     fileStream.write(reinterpret_cast<const char*>(buffer.data()), buffer.size());
 
     if (fileStream.fail()) {
-        std::cerr << "Error: Write operation failed!\n";
         return -1;
     }
 
