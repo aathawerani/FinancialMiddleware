@@ -173,9 +173,9 @@ int CommonFunctions::asciiToEbcdic(std::span<unsigned char> buffer) {
 
         if (ASCII_TO_EBCDIC[0x41] != 0xC1 || ASCII_TO_EBCDIC[0x42] != 0xC2 || ASCII_TO_EBCDIC[0x43] != 0xC3) {
             std::cerr << "Error: ASCII_TO_EBCDIC table is incorrect!\n";
-            std::cerr << "ASCII_TO_EBCDIC[0x41] = 0x" << std::hex << static_cast<int>(ASCII_TO_EBCDIC[0x41]) << "\n";
-            std::cerr << "ASCII_TO_EBCDIC[0x42] = 0x" << std::hex << static_cast<int>(ASCII_TO_EBCDIC[0x42]) << "\n";
-            std::cerr << "ASCII_TO_EBCDIC[0x43] = 0x" << std::hex << static_cast<int>(ASCII_TO_EBCDIC[0x43]) << "\n";
+            std::cerr << "ASCII_TO_EBCDIC[0x41] = " << std::hex << static_cast<int>(ASCII_TO_EBCDIC[0x41]) << "\n";
+            std::cerr << "ASCII_TO_EBCDIC[0x42] = " << std::hex << static_cast<int>(ASCII_TO_EBCDIC[0x42]) << "\n";
+            std::cerr << "ASCII_TO_EBCDIC[0x43] = " << std::hex << static_cast<int>(ASCII_TO_EBCDIC[0x43]) << "\n";
         }
     }
     return 1;

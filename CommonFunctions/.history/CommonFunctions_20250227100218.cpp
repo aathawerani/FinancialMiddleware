@@ -162,20 +162,15 @@ int CommonFunctions::asciiToEbcdic(std::span<unsigned char> buffer) {
     for (auto& byte : buffer) {
         unsigned char original = byte;
         byte = ASCII_TO_EBCDIC[byte];
-
-        // Print in hex format to prevent misinterpretation of high-bit characters
-        std::cout << "ASCII: 0x" << std::hex << static_cast<int>(original)
-                  << " -> EBCDIC: 0x" << static_cast<int>(byte) << "\n";
-
         std::cout << "ASCII: " << static_cast<int>(original)
                   << " -> EBCDIC: " << static_cast<int>(byte) 
                   << " (" << static_cast<char>(byte) << ")\n";
 
         if (ASCII_TO_EBCDIC[0x41] != 0xC1 || ASCII_TO_EBCDIC[0x42] != 0xC2 || ASCII_TO_EBCDIC[0x43] != 0xC3) {
             std::cerr << "Error: ASCII_TO_EBCDIC table is incorrect!\n";
-            std::cerr << "ASCII_TO_EBCDIC[0x41] = 0x" << std::hex << static_cast<int>(ASCII_TO_EBCDIC[0x41]) << "\n";
-            std::cerr << "ASCII_TO_EBCDIC[0x42] = 0x" << std::hex << static_cast<int>(ASCII_TO_EBCDIC[0x42]) << "\n";
-            std::cerr << "ASCII_TO_EBCDIC[0x43] = 0x" << std::hex << static_cast<int>(ASCII_TO_EBCDIC[0x43]) << "\n";
+            std::cerr << "ASCII_TO_EBCDIC[0x41] = " << std::hex << static_cast<int>(ASCII_TO_EBCDIC[0x41]) << "\n";
+            std::cerr << "ASCII_TO_EBCDIC[0x42] = " << std::hex << static_cast<int>(ASCII_TO_EBCDIC[0x42]) << "\n";
+            std::cerr << "ASCII_TO_EBCDIC[0x43] = " << std::hex << static_cast<int>(ASCII_TO_EBCDIC[0x43]) << "\n";
         }
     }
     return 1;
