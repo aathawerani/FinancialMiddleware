@@ -1,10 +1,5 @@
 #include "Encryption.h"
-
 #include <memory>
-#include <cstring>   // For std::memset
-#include <vector>
-#include <array> 
-
 #include "openssl/include/openssl/bio.h"
 #include "openssl/include/openssl/evp.h"
 #include "openssl/include/openssl/buffer.h"
@@ -34,7 +29,7 @@ std::string Encryption::base64(const unsigned char* input, int length) {
     return encoded;
 }
 
-std::string Encryption::GetMK(const unsigned char* cInternalKey, const std::string& permutation) {
+std::string CommonFunctions::GetMK(const unsigned char* cInternalKey, const std::string& permutation) {
     std::array<unsigned char, 32> cInternalKeyNonShuffled{};
     std::string sInternalKeyShuffled(reinterpret_cast<const char*>(cInternalKey), 32);
 
@@ -45,14 +40,11 @@ std::string Encryption::GetMK(const unsigned char* cInternalKey, const std::stri
         int value = ch - '0';
         value *= 4;
 
-        if (value + 4 > 32) {  // ✅ Prevents out-of-bounds access
-            continue;
-        }
-
         for (int y = value; y < (value + 4); ++y) {
             cInternalKeyNonShuffled[y] = cInternalKey[indexForsInternalKey++];
         }
     }
 
-    return Encryption::base64(cInternalKeyNonShuffled.data(), 32);
+    std::string base64sConverted = CommonFunctions::base64(cInternalKeyNonShuffled.data(), 32);
+    return base64sConverted;
 }

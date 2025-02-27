@@ -3,7 +3,6 @@
 #include <memory>
 #include <cstring>   // For std::memset
 #include <vector>
-#include <array> 
 
 #include "openssl/include/openssl/bio.h"
 #include "openssl/include/openssl/evp.h"
@@ -45,14 +44,11 @@ std::string Encryption::GetMK(const unsigned char* cInternalKey, const std::stri
         int value = ch - '0';
         value *= 4;
 
-        if (value + 4 > 32) {  // ✅ Prevents out-of-bounds access
-            continue;
-        }
-
         for (int y = value; y < (value + 4); ++y) {
             cInternalKeyNonShuffled[y] = cInternalKey[indexForsInternalKey++];
         }
     }
 
-    return Encryption::base64(cInternalKeyNonShuffled.data(), 32);
+    std::string base64sConverted = Encryption::base64(cInternalKeyNonShuffled.data(), 32);
+    return base64sConverted;
 }
