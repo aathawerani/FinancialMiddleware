@@ -1,0 +1,42 @@
+#include "Encryption.h"
+#include <iostream>
+
+int main() {
+    const unsigned char data[] = "Hello, C++20!";
+    std::string encoded = Encryption::base64(data, sizeof(data) - 1);    
+    std::cout << "Base64 Encoded: " << encoded << std::endl;
+
+    unsigned char cInternalKey[32] = {
+        0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47, 0x48,
+        0x49, 0x4A, 0x4B, 0x4C, 0x4D, 0x4E, 0x4F, 0x50,
+        0x51, 0x52, 0x53, 0x54, 0x55, 0x56, 0x57, 0x58,
+        0x59, 0x5A, 0x61, 0x62, 0x63, 0x64, 0x65, 0x66
+    };
+    std::string permutation = "012345"; // Example permutation
+    std::string result = Encryption::GetMK(cInternalKey, permutation);
+    std::cout << "Base64 Encoded Key: " << result << std::endl;
+
+    std::vector<uint8_t> inputData = {'H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd', '!'};
+    std::vector<uint8_t> compressedData;
+    std::vector<uint8_t> decompressedData(inputData.size() * 2);  // Allocate a large buffer for decompression
+
+    // Compress
+    if (Encryption::Compress(inputData, compressedData)) {
+        std::cout << "Compression successful! Compressed size: " << compressedData.size() << " bytes\n";
+    } else {
+        std::cerr << "Compression failed!\n";
+    }
+
+    // Uncompress
+    if (Encryption::Uncompress(compressedData, decompressedData)) {
+        std::cout << "Decompression successful! Data: ";
+        for (char c : decompressedData) {
+            std::cout << c;
+        }
+        std::cout << '\n';
+    } else {
+        std::cerr << "Decompression failed!\n";
+    }
+
+    return 0;
+}
