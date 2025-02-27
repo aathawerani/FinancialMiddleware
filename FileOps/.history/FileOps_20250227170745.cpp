@@ -58,13 +58,13 @@ int CFileOps::ReadParamLine(std::vector<std::string>& vecBuffer, unsigned int ma
     return ReadDelimitedLine(vecBuffer, "\t ", maxSize);
 }
 
-std::string CFileOps::ReadBinary(const char* filename) {
+std::vector<unsigned char> CFileOps::ReadBinary(const char* filename) {
     std::streamsize fileSize = fileStream.tellg();
     fileStream.seekg(0, std::ios::beg);
 
-    std::string fileData;
+    std::vector<unsigned char> fileData(fileSize);
     
-    if (!ReadLine(fileData)) {
+    if (!ReadLine(reinterpret_cast<char*>(fileData.data()), fileSize)) {
         throw std::runtime_error("Error: Failed to read file " + std::string(filename));
     }
 

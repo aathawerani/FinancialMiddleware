@@ -19,7 +19,7 @@ public:
     int ReadParamLine(std::span<char> buffer, unsigned int maxSize);
     int ReadDelimitedLine(std::vector<std::string>& vecBuffer, std::string_view delimiter, unsigned int maxSize);
     int ReadParamLine(std::vector<std::string>& vecBuffer, unsigned int maxSize);
-    std::string ReadBinary(const char* filename);
+    std::vector<unsigned char> ReadBinary(const char* filename);
 };
 
 #endif // FILEOPS_H
