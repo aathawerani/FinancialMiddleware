@@ -23,23 +23,6 @@ int main() {
     std::vector<uint8_t> compressedData;
     std::vector<uint8_t> decompressedData(inputData.size() * 2);  // Allocate a large buffer for decompression
 
-    // Compress
-    if (Encryption::Compress(inputData, compressedData)) {
-        std::cout << "Compression successful! Compressed size: " << compressedData.size() << " bytes\n";
-    } else {
-        std::cerr << "Compression failed!\n";
-    }
-
-    // Uncompress
-    if (Encryption::Uncompress(compressedData, decompressedData)) {
-        std::cout << "Decompression successful! Data: ";
-        for (char c : decompressedData) {
-            std::cout << c;
-        }
-        std::cout << '\n';
-    } else {
-        std::cerr << "Decompression failed!\n";
-    }
 
     return 0;
 }
