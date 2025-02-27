@@ -1,0 +1,8 @@
+D:/aaht14/gitRepos/FinancialMiddleware/Encryption/zlib/build/CMakeFiles/zlib.dir
+D:/aaht14/gitRepos/FinancialMiddleware/Encryption/zlib/build/CMakeFiles/zlibstatic.dir
+D:/aaht14/gitRepos/FinancialMiddleware/Encryption/zlib/build/CMakeFiles/example.dir
+D:/aaht14/gitRepos/FinancialMiddleware/Encryption/zlib/build/CMakeFiles/minigzip.dir
+D:/aaht14/gitRepos/FinancialMiddleware/Encryption/zlib/build/CMakeFiles/RUN_TESTS.dir
+D:/aaht14/gitRepos/FinancialMiddleware/Encryption/zlib/build/CMakeFiles/INSTALL.dir
+D:/aaht14/gitRepos/FinancialMiddleware/Encryption/zlib/build/CMakeFiles/ALL_BUILD.dir
+D:/aaht14/gitRepos/FinancialMiddleware/Encryption/zlib/build/CMakeFiles/ZERO_CHECK.dir

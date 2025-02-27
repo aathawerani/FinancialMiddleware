@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\aaht14\gitRepos\FinancialMiddleware\Encryption\zlib\adler32.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\aaht14\gitRepos\FinancialMiddleware\Encryption\zlib\compress.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\aaht14\gitRepos\FinancialMiddleware\Encryption\zlib\crc32.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\aaht14\gitRepos\FinancialMiddleware\Encryption\zlib\deflate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\aaht14\gitRepos\FinancialMiddleware\Encryption\zlib\gzclose.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\aaht14\gitRepos\FinancialMiddleware\Encryption\zlib\gzlib.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\aaht14\gitRepos\FinancialMiddleware\Encryption\zlib\gzread.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\aaht14\gitRepos\FinancialMiddleware\Encryption\zlib\gzwrite.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\aaht14\gitRepos\FinancialMiddleware\Encryption\zlib\inflate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\aaht14\gitRepos\FinancialMiddleware\Encryption\zlib\infback.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\aaht14\gitRepos\FinancialMiddleware\Encryption\zlib\inftrees.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\aaht14\gitRepos\FinancialMiddleware\Encryption\zlib\inffast.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\aaht14\gitRepos\FinancialMiddleware\Encryption\zlib\trees.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\aaht14\gitRepos\FinancialMiddleware\Encryption\zlib\uncompr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\aaht14\gitRepos\FinancialMiddleware\Encryption\zlib\zutil.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\aaht14\gitRepos\FinancialMiddleware\Encryption\zlib\build\zconf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\aaht14\gitRepos\FinancialMiddleware\Encryption\zlib\zlib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\aaht14\gitRepos\FinancialMiddleware\Encryption\zlib\crc32.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\aaht14\gitRepos\FinancialMiddleware\Encryption\zlib\deflate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\aaht14\gitRepos\FinancialMiddleware\Encryption\zlib\gzguts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\aaht14\gitRepos\FinancialMiddleware\Encryption\zlib\inffast.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\aaht14\gitRepos\FinancialMiddleware\Encryption\zlib\inffixed.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\aaht14\gitRepos\FinancialMiddleware\Encryption\zlib\inflate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\aaht14\gitRepos\FinancialMiddleware\Encryption\zlib\inftrees.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\aaht14\gitRepos\FinancialMiddleware\Encryption\zlib\trees.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\aaht14\gitRepos\FinancialMiddleware\Encryption\zlib\zutil.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\aaht14\gitRepos\FinancialMiddleware\Encryption\zlib\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="D:\aaht14\gitRepos\FinancialMiddleware\Encryption\zlib\win32\zlib1.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{63624E1D-7B07-3A79-8E15-0E568BD7DE28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{D2A07924-D820-34FC-85A0-D6CEB2463D1E}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

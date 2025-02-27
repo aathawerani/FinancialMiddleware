@@ -1,0 +1,7 @@
+D:/aaht14/gitRepos/FinancialMiddleware/Encryption/zlib/install/lib/zlib.lib
+D:/aaht14/gitRepos/FinancialMiddleware/Encryption/zlib/install/bin/zlib.dll
+D:/aaht14/gitRepos/FinancialMiddleware/Encryption/zlib/install/lib/zlibstatic.lib
+D:/aaht14/gitRepos/FinancialMiddleware/Encryption/zlib/install/include/zconf.h
+D:/aaht14/gitRepos/FinancialMiddleware/Encryption/zlib/install/include/zlib.h
+D:/aaht14/gitRepos/FinancialMiddleware/Encryption/zlib/install/share/man/man3/zlib.3
+D:/aaht14/gitRepos/FinancialMiddleware/Encryption/zlib/install/share/pkgconfig/zlib.pc
