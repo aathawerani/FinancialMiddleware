@@ -127,16 +127,3 @@ long CFileIO::WriteLine(const std::vector<unsigned char>& buffer) {
 
     return buffer.size();
 }
-
-std::string CFileIO::ReadBinary() {
-    std::streamsize fileSize = fileStream.tellg();
-    fileStream.seekg(0, std::ios::beg);
-
-    std::string fileData;
-    
-    if (!ReadLine(fileData)) {
-        throw std::runtime_error("Error: Failed to read file ");
-    }
-
-    return fileData;
-}

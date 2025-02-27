@@ -82,11 +82,11 @@ int main() {
         binfile.WriteLine(sampleData);
         binfile.flush();
         binfile.close();
-        std::cout << "Binary file '" << binfilename << "' generated successfully!\n";
+        std::cout << "Binary file '" << filename << "' generated successfully!\n";
 
-        CFileIO binfileRead(binfilename, std::ios::binary);
+        CFileIO binfileRead(filename, std::ios::binary);
         std::string fileData = binfileRead.ReadBinary();
-        std::cout << "Successfully read " << fileData.size() << " bytes from file: " << binfilename << std::endl;
+        std::cout << "Successfully read " << fileData.size() << " bytes from file: " << filename << std::endl;
 
         // Print first few bytes (for demonstration)
         std::cout << "File Content (first 10 bytes): ";

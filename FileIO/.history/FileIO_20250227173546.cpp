@@ -135,7 +135,7 @@ std::string CFileIO::ReadBinary() {
     std::string fileData;
     
     if (!ReadLine(fileData)) {
-        throw std::runtime_error("Error: Failed to read file ");
+        throw std::runtime_error("Error: Failed to read file " + std::string(filename));
     }
 
     return fileData;

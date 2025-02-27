@@ -5,7 +5,6 @@
 #include <mutex>
 #include <string>
 #include <string_view>
-#include <vector>
 
 class CFileIO {
 public:
@@ -22,7 +21,6 @@ public:
     long WriteLine(const std::string& buffer);
     long WriteLine(const std::vector<unsigned char>& buffer);
     long ReadLine(std::string& buffer);
-    std::string ReadBinary();
 
     void flush();
     void close();

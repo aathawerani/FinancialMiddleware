@@ -78,15 +78,15 @@ int main() {
         std::vector<unsigned char> sampleData = {0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x20, 0xC2, 0xA9, 0x21, 0x00};
 
         const char* binfilename = "example.bin";  // Change this to your actual file
-        CFileIO binfile(binfilename, std::ios::binary  | std::ios::out);
+        CFileIO binfile(filename, std::ios::binary  | std::ios::out);
         binfile.WriteLine(sampleData);
         binfile.flush();
         binfile.close();
-        std::cout << "Binary file '" << binfilename << "' generated successfully!\n";
+        std::cout << "Binary file '" << filename << "' generated successfully!\n";
 
-        CFileIO binfileRead(binfilename, std::ios::binary);
+        CFileIO binfileRead(filename, std::ios::binary);
         std::string fileData = binfileRead.ReadBinary();
-        std::cout << "Successfully read " << fileData.size() << " bytes from file: " << binfilename << std::endl;
+        std::cout << "Successfully read " << fileData.size() << " bytes from file: " << filename << std::endl;
 
         // Print first few bytes (for demonstration)
         std::cout << "File Content (first 10 bytes): ";
