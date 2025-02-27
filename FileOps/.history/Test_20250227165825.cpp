@@ -78,8 +78,8 @@ int main() {
         binfile.close();
         std::cout << "Binary file '" << filename << "' generated successfully!\n";
 
-        CFileOps binfileRead(filename, std::ios::binary);
-        std::vector<unsigned char> fileData = binfileRead.ReadBinary(filename);
+        CFileOps file(filename, std::ios::binary);
+        std::vector<unsigned char> fileData = file.ReadBinary(filename);
         std::cout << "Successfully read " << fileData.size() << " bytes from file: " << filename << std::endl;
 
         // Print first few bytes (for demonstration)

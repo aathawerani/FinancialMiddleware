@@ -58,7 +58,7 @@ int CFileOps::ReadParamLine(std::vector<std::string>& vecBuffer, unsigned int ma
     return ReadDelimitedLine(vecBuffer, "\t ", maxSize);
 }
 
-std::vector<unsigned char> CFileOps::ReadBinary(const char* filename) {
+std::vector<unsigned char> CUtilityFunctions::ReadBinary(const char* filename) {
     std::ifstream file(filename, std::ios::binary | std::ios::ate);
     
     if (!file) {

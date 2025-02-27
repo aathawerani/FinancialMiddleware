@@ -73,13 +73,17 @@ int main() {
         std::vector<unsigned char> sampleData = {0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x20, 0xC2, 0xA9, 0x21, 0x00};
 
         const char* filename = "example.bin";  // Change this to your actual file
-        CFileOps binfile(filename, std::ios::binary);
-        binfile.WriteLine(reinterpret_cast<const char*>(sampleData.data()));
-        binfile.close();
-        std::cout << "Binary file '" << filename << "' generated successfully!\n";
+        CFileOps file(filename, std::ios::binary);
+        if (file) {
+            file.write(reinterpret_cast<const char*>(sampleData.data()), sampleData.size());
+            file.close();
+            std::cout << "Binary file '" << filename << "' generated successfully!\n";
+        } else {
+            std::cerr << "Failed to create binary file!\n";
+        }
 
-        CFileOps binfileRead(filename, std::ios::binary);
-        std::vector<unsigned char> fileData = binfileRead.ReadBinary(filename);
+        std::vector<unsigned char> fileData = CFileOps::ReadBinary(filename);
+
         std::cout << "Successfully read " << fileData.size() << " bytes from file: " << filename << std::endl;
 
         // Print first few bytes (for demonstration)

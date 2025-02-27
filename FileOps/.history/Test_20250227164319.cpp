@@ -31,6 +31,7 @@ int main() {
     try {
         std::cout << "Attempting to create file: " << fileName << std::endl;
 
+        // ✅ Fix: Pass fileName correctly
         CFileOps file(fileName, CFileIO::FLAG_CREATE_ALWAYS | std::ios::in | std::ios::out);
         std::cout << "File created successfully: " << fileName << std::endl;
 
@@ -70,16 +71,9 @@ int main() {
         file.close();
 
 
-        std::vector<unsigned char> sampleData = {0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x20, 0xC2, 0xA9, 0x21, 0x00};
-
         const char* filename = "example.bin";  // Change this to your actual file
-        CFileOps binfile(filename, std::ios::binary);
-        binfile.WriteLine(reinterpret_cast<const char*>(sampleData.data()));
-        binfile.close();
-        std::cout << "Binary file '" << filename << "' generated successfully!\n";
+        std::vector<unsigned char> fileData = CUtilityFunctions::ReadBinary(filename);
 
-        CFileOps binfileRead(filename, std::ios::binary);
-        std::vector<unsigned char> fileData = binfileRead.ReadBinary(filename);
         std::cout << "Successfully read " << fileData.size() << " bytes from file: " << filename << std::endl;
 
         // Print first few bytes (for demonstration)
