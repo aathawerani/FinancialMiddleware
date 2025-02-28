@@ -97,28 +97,17 @@ bool Encryption::Uncompress(std::span<const uint8_t> srcBuffer, std::vector<uint
 std::string Encryption::HashValue(std::string_view sData) {
     CryptoPP::SHA512 hasher;
     std::vector<uint8_t> hash(CryptoPP::SHA512::DIGESTSIZE);
-
     hasher.CalculateDigest(hash.data(), reinterpret_cast<const uint8_t*>(sData.data()), sData.size());
-
-    return CommonFunctions::BinToHex(hash); // Pass `std::vector<uint8_t>` directly (implicit span)
+    return BinToHex(hash.data(), hash.size());
 }
 
-std::string Encryption::SHA1Hash(const std::string& binaryFilename, std::string_view salt) {
-    CFileIO binfile(binaryFilename, std::ios::binary | std::ios::in);
+std::string Encryption::SHA1Hash(std::string_view binaryContent, std::string_view salt) {
     
-    // Read binary content into std::string
-    std::string fileDataStr = binfile.ReadBinary();
+    std::vector<uint8_t> fileData = ReadBinary(std::string(binaryContent));
+    fileData.insert(fileData.end(), salt.begin(), salt.end());  // Append salt
 
-    // Convert std::string to std::vector<uint8_t>
-    std::vector<uint8_t> fileData(fileDataStr.begin(), fileDataStr.end());
-
-    // Append salt
-    fileData.insert(fileData.end(), salt.begin(), salt.end());
-
-    // Compute SHA1 hash
     uint8_t md[SHA_DIGEST_LENGTH];
     SHA1(fileData.data(), fileData.size(), md);
 
-    // Corrected usage: Wrap `md` in `std::span`
-    return CommonFunctions::BinToHex(std::span<const uint8_t>(md, SHA_DIGEST_LENGTH));
+    return BinToHex(md, SHA_DIGEST_LENGTH);
 }

@@ -119,6 +119,5 @@ std::string Encryption::SHA1Hash(const std::string& binaryFilename, std::string_
     uint8_t md[SHA_DIGEST_LENGTH];
     SHA1(fileData.data(), fileData.size(), md);
 
-    // Corrected usage: Wrap `md` in `std::span`
-    return CommonFunctions::BinToHex(std::span<const uint8_t>(md, SHA_DIGEST_LENGTH));
+    return BinToHex(md, SHA_DIGEST_LENGTH);
 }

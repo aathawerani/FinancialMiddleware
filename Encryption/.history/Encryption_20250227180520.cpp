@@ -97,10 +97,8 @@ bool Encryption::Uncompress(std::span<const uint8_t> srcBuffer, std::vector<uint
 std::string Encryption::HashValue(std::string_view sData) {
     CryptoPP::SHA512 hasher;
     std::vector<uint8_t> hash(CryptoPP::SHA512::DIGESTSIZE);
-
     hasher.CalculateDigest(hash.data(), reinterpret_cast<const uint8_t*>(sData.data()), sData.size());
-
-    return CommonFunctions::BinToHex(hash); // Pass `std::vector<uint8_t>` directly (implicit span)
+    return BinToHex(hash.data(), hash.size());
 }
 
 std::string Encryption::SHA1Hash(const std::string& binaryFilename, std::string_view salt) {
@@ -119,6 +117,5 @@ std::string Encryption::SHA1Hash(const std::string& binaryFilename, std::string_
     uint8_t md[SHA_DIGEST_LENGTH];
     SHA1(fileData.data(), fileData.size(), md);
 
-    // Corrected usage: Wrap `md` in `std::span`
-    return CommonFunctions::BinToHex(std::span<const uint8_t>(md, SHA_DIGEST_LENGTH));
+    return BinToHex(md, SHA_DIGEST_LENGTH);
 }

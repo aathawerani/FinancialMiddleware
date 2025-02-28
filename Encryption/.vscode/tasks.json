@@ -21,7 +21,7 @@
             "command": "cmd.exe",
             "args": [
                 "/c",
-                "\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\Build\\vcvars64.bat\" && cl /std:c++20 /I\"cryptopp\" /I zlib/include /EHsc /I\"openssl/include\" /Fe:Test.exe *.cpp /link /LIBPATH:\"openssl/lib\" libssl.lib libcrypto.lib /LIBPATH:zlib/lib zlib.lib /LIBPATH:cryptopp cryptlib.lib"
+                "\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\Build\\vcvars64.bat\" && cl /std:c++20 /I\"cryptopp\" /I zlib/include /EHsc /I\"openssl/include\" /Fe:Test.exe *.cpp ../CommonFunctions/CommonFunctions.cpp /ICommonFunctions ../FileIO/FileIO.cpp /IFileIO /link /LIBPATH:\"openssl/lib\" libssl.lib libcrypto.lib /LIBPATH:zlib/lib zlib.lib /LIBPATH:cryptopp cryptlib.lib"
             ],
             "group": {
                 "kind": "build",
